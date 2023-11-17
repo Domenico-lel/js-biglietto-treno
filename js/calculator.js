@@ -8,11 +8,25 @@ Questo richiederà un minimo di ricerca.*/
 
 
 
+// Chiedi all'utente il numero di chilometri e l'età del passeggero
+var kmDaPercorrere = parseFloat(prompt("Inserisci il numero di chilometri che vuoi percorrere:"));
+var etaPasseggero = parseInt(prompt("Inserisci l'età del passeggero:"));
 
-const userKM = prompt("inserisci il numero di KM da percorrere:");
-const userEta = prompt("inserisci la tua età:");
+// Calcola il prezzo del biglietto
+var prezzoAlKm = 0.21;
+var prezzoTotale = kmDaPercorrere * prezzoAlKm;
 
-let info = `${userKM} ${userEta}`;
+// Applica gli sconti in base all'età
+if (etaPasseggero < 18) {
+    // Sconto del 20% per i minorenni
+    prezzoTotale -= prezzoTotale * 0.2;
+} else if (etaPasseggero >= 65) {
+    // Sconto del 40% per gli over 65
+    prezzoTotale -= prezzoTotale * 0.4;
+}
 
+// Formatta il prezzo finale con massimo due decimali
+prezzoTotale = prezzoTotale.toFixed(2);
 
-document.getElementById("mio_id").innerHTML = info;
+// Stampare il prezzo finale
+console.log("Il prezzo totale del viaggio è: €" + prezzoTotale);
